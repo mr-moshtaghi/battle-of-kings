@@ -1,6 +1,9 @@
 package entity
 
-import "strings"
+import (
+	"fmt"
+	"strings"
+)
 
 type ID string
 
@@ -14,4 +17,8 @@ func (i ID) ID() string {
 
 func (i ID) String() string {
 	return string(i)
+}
+
+func NewID[T any](entityType string, id T) ID {
+	return ID(fmt.Sprintf("%v:%v", entityType, id))
 }

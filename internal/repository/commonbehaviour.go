@@ -43,7 +43,7 @@ func (r RedisCommonBehaviour[T]) Get(ctx context.Context, id entity.ID) (T, erro
 
 func (r RedisCommonBehaviour[T]) Save(ctx context.Context, ent entity.Entity) error {
 	cmd := r.client.B().JsonSet().Key(ent.EntityID().String()).
-		Path("&").Value(string(jsonhelper.Encode(ent))).Build()
+		Path("$").Value(string(jsonhelper.Encode(ent))).Build()
 	err := r.client.Do(ctx, cmd).Error()
 	if err != nil {
 		logrus.WithError(err).WithField("ent", ent).Errorln("couldn't save the entity")
