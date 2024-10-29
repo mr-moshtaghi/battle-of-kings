@@ -11,11 +11,6 @@ import (
 
 var _ CommonBehaviour[entity.Entity] = &RedisCommonBehaviour[entity.Entity]{}
 
-type CommonBehaviour[T entity.Entity] interface {
-	Get(ctx context.Context, id entity.ID) (T, error)
-	Save(ctx context.Context, ent entity.Entity) error
-}
-
 type RedisCommonBehaviour[T entity.Entity] struct {
 	client rueidis.Client
 }

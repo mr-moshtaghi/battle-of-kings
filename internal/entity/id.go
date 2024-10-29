@@ -20,5 +20,5 @@ func (i ID) String() string {
 }
 
 func NewID[T any](entityType string, id T) ID {
-	return ID(fmt.Sprintf("%v:%v", entityType, id))
+	return ID(fmt.Sprintf("%s:%v", entityType, id))
 }
